@@ -1,344 +1,303 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrum Lessen - Jouw Complete Gids</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Broken Layout – Flexbox Oefening</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --accent: #4f46e5;
+      --accent-soft: #eef2ff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --radius: 12px;
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem 1.5rem 3rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #e0e7ff 0, var(--bg) 55%);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+      margin: 0 0 0.25rem;
+    }
+
+    .subtitle {
+      margin: 0 0 2rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* -----------------------------
+       CARDS CONTAINER
+       → HIER KOMT STRAKS FLEXBOX
+       ----------------------------- */
+    .cards {
+      /* TODO: maak hier een mooie layout met flexbox */
+      /* Bijvoorbeeld: display, wrap, gap, ... */
+    }
+
+    /* -----------------------------
+       INDIVIDUELE CARDS
+       ----------------------------- */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.25rem 1rem;
+      margin-bottom: 1.5rem; /* blijft staan voor small screens */
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      position: relative;
+    }
+
+    .card--featured {
+      background: var(--accent-soft);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+    }
+
+    .card__tag {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #f97316;
+      color: white;
+    }
+
+    .card__title {
+      font-size: 1.05rem;
+      margin: 0 0 0.4rem;
+    }
+
+    .card__meta {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin: 0 0 0.75rem;
+    }
+
+    .card__body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.14);
+      color: #4b5563;
+      margin-right: 0.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card__footer {
+      /* TODO: hier kun je met flexbox prijs & button mooi uitlijnen */
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .price {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .price span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 0.5rem; /* hierdoor staat de button nu vaak “los” */
+      font-size: 0.85rem;
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+    }
+
+    /* -----------------------------
+       RESPONSIVE STYLES (bewust half-bakken)
+       - Kaarten hebben wel een breedte,
+         maar zonder flexbox ziet het er niet netjes uit.
+       ----------------------------- */
+    @media (min-width: 768px) {
+      .card {
+        width: 48%;
+      }
+
+      .card--featured {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .card {
+        width: 31%;
+      }
+
+      .card--featured {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-icon">🚀</span>
-                <span class="logo-text">Scrum Academy</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="#lessen" class="nav-link">Lessen</a>
-                <a href="#over" class="nav-link">Over</a>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+  <div class="page">
+    <header>
+      <h1>Frontend Skill Tracks</h1>
+      <p class="subtitle">
+        De layout hieronder is “bijna goed”&nbsp;&mdash; perfectioneer ‘m met flexbox.
+      </p>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">✨ 6 Interactieve Lessen</div>
-            <h1 class="hero-title">
-                Leer Scrum op een
-                <span class="gradient-text">Vette Manier</span>
-            </h1>
-            <p class="hero-description">
-                Van nul naar Scrum-held in 6 lessen. Geen saaie theorie, maar hands-on 
-                werken met echte projecten. Perfect voor eerstejaars! 🎯
-            </p>
-            <div class="hero-buttons">
-                <a href="#lessen" class="btn btn-primary">Start Nu</a>
-                <a href="#over" class="btn btn-secondary">Meer Info</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">Lessen</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">1u</div>
-                    <div class="stat-label">Per Les</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Hands-on</div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="floating-card card-1">
-                <span class="card-emoji">📱</span>
-                <span class="card-text">Telefoons weg!</span>
-            </div>
-            <div class="floating-card card-2">
-                <span class="card-emoji">🤝</span>
-                <span class="card-text">Teamwork</span>
-            </div>
-            <div class="floating-card card-3">
-                <span class="card-emoji">⚡</span>
-                <span class="card-text">Sprint!</span>
-            </div>
-        </div>
-    </section>
+    <main>
+      <section class="cards">
+        <article class="card card--featured">
+          <div class="card__tag">Populair</div>
+          <h2 class="card__title">Modern UI Components</h2>
+          <p class="card__meta">LEVEL 2 · 6 PROJECTEN</p>
+          <p class="card__body">
+            Bouw dashboards, cards en navigatiebalken zoals in echte SaaS-apps.
+            Focus op consistente spacing, typografie en component-thinking.
+          </p>
+          <div>
+            <span class="pill">Buttons</span>
+            <span class="pill">Cards</span>
+            <span class="pill">Navbars</span>
+            <span class="pill">Dark mode</span>
+          </div>
+          <div class="card__footer">
+            <div class="price">± 8 uur <span>/ zelfstandig</span></div>
+            <a class="btn" href="#">Bekijk track</a>
+          </div>
+        </article>
 
-    <!-- 4 Gouden Groepsregels -->
-    <section class="rules-section" style="background: var(--bg-secondary); padding: 4rem 0;">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">📜 De 4 Gouden Groepsregels</h2>
-                <p class="section-description">
-                    Deze regels gelden voor ALLE lessen. Belangrijk voor succesvol groepswerk! 🌟
-                </p>
-            </div>
+        <article class="card">
+          <h2 class="card__title">Flexbox Fundamentals</h2>
+          <p class="card__meta">LEVEL 1 · 4 PROJECTEN</p>
+          <p class="card__body">
+            Leer hoe je rijen, kolommen en uitlijning beheerst met flexbox.
+            Perfect als basis voor responsive layouts zonder frameworks.
+          </p>
+          <div>
+            <span class="pill">Main axis</span>
+            <span class="pill">Cross axis</span>
+            <span class="pill">Alignment</span>
+          </div>
+          <div class="card__footer">
+            <div class="price">± 4 uur <span>/ klassikaal</span></div>
+            <a class="btn btn--ghost" href="#">Start module</a>
+          </div>
+        </article>
 
-            <div class="rules-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
-                <div class="rule-card" style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); border: 2px solid var(--border); transition: var(--transition-base);">
-                    <div class="rule-icon" style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">📱</div>
-                    <h3 style="text-align: center; color: var(--primary); font-size: 1.25rem; margin-bottom: 0.5rem;">Regel 1</h3>
-                    <h4 style="text-align: center; font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Telefoons weg</h4>
-                    <p style="text-align: center; color: var(--text-secondary); line-height: 1.6;">
-                        Tenzij de opdracht het vereist (zoals de Playlist Challenge!)
-                    </p>
-                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(239, 68, 68, 0.1); border-radius: 0.5rem; text-align: center;">
-                        <strong style="color: var(--danger);">❌</strong> Social media checken<br>
-                        <strong style="color: var(--success);">✅</strong> Focus op groep
-                    </div>
-                </div>
+        <article class="card">
+          <h2 class="card__title">Landing Pages</h2>
+          <p class="card__meta">LEVEL 2 · 3 PROJECTEN</p>
+          <p class="card__body">
+            Ontwerp en bouw een complete hero-section met tekst, call-to-action
+            en visuals. Werk aan hierarchy en leesbaarheid.
+          </p>
+          <div>
+            <span class="pill">Hero</span>
+            <span class="pill">CTA</span>
+            <span class="pill">Responsive</span>
+          </div>
+          <div class="card__footer">
+            <div class="price">± 6 uur <span>/ project</span></div>
+            <a class="btn" href="#">Bekijk opdrachten</a>
+          </div>
+        </article>
 
-                <div class="rule-card" style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); border: 2px solid var(--border); transition: var(--transition-base);">
-                    <div class="rule-icon" style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">🎧</div>
-                    <h3 style="text-align: center; color: var(--secondary); font-size: 1.25rem; margin-bottom: 0.5rem;">Regel 2</h3>
-                    <h4 style="text-align: center; font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Iedereen doet mee</h4>
-                    <p style="text-align: center; color: var(--text-secondary); line-height: 1.6;">
-                        Geen toeschouwers. Iedereen draagt bij aan het team!
-                    </p>
-                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(239, 68, 68, 0.1); border-radius: 0.5rem; text-align: center;">
-                        <strong style="color: var(--danger);">❌</strong> Op telefoon zitten<br>
-                        <strong style="color: var(--success);">✅</strong> Actief bijdragen
-                    </div>
-                </div>
+        <article class="card">
+          <h2 class="card__title">Component Library</h2>
+          <p class="card__meta">LEVEL 3 · 5 PROJECTEN</p>
+          <p class="card__body">
+            Verzamel al je herbruikbare UI-blokken in één component library.
+            Denk na over varianten, states en naming conventions.
+          </p>
+          <div>
+            <span class="pill">Design system</span>
+            <span class="pill">Variants</span>
+          </div>
+          <div class="card__footer">
+            <div class="price">± 10 uur <span>/ portfolio</span></div>
+            <a class="btn btn--ghost" href="#">Plan je track</a>
+          </div>
+        </article>
 
-                <div class="rule-card" style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); border: 2px solid var(--border); transition: var(--transition-base);">
-                    <div class="rule-icon" style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">🤝</div>
-                    <h3 style="text-align: center; color: var(--success); font-size: 1.25rem; margin-bottom: 0.5rem;">Regel 3</h3>
-                    <h4 style="text-align: center; font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Respecteer elkaar</h4>
-                    <p style="text-align: center; color: var(--text-secondary); line-height: 1.6;">
-                        Luister, laat uitspreken, wees aardig naar teamgenoten
-                    </p>
-                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(239, 68, 68, 0.1); border-radius: 0.5rem; text-align: center;">
-                        <strong style="color: var(--danger);">❌</strong> Interrumperen<br>
-                        <strong style="color: var(--success);">✅</strong> Naar elkaar luisteren
-                    </div>
-                </div>
+        <article class="card">
+          <h2 class="card__title">CSS Utilities</h2>
+          <p class="card__meta">LEVEL 1 · 2 PROJECTEN</p>
+          <p class="card__body">
+            Maak je eigen mini-toolkit met spacing, kleuren en typografie.
+            Ideaal als voorbereiding op Tailwind of andere utility frameworks.
+          </p>
+          <div>
+            <span class="pill">Spacing</span>
+            <span class="pill">Typography</span>
+            <span class="pill">Colors</span>
+          </div>
+          <div class="card__footer">
+            <div class="price">± 3 uur <span>/ lab</span></div>
+            <a class="btn" href="#">Open lab</a>
+          </div>
+        </article>
 
-                <div class="rule-card" style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); border: 2px solid var(--border); transition: var(--transition-base);">
-                    <div class="rule-icon" style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">⏰</div>
-                    <h3 style="text-align: center; color: #f59e0b; font-size: 1.25rem; margin-bottom: 0.5rem;">Regel 4</h3>
-                    <h4 style="text-align: center; font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Let op de tijd</h4>
-                    <p style="text-align: center; color: var(--text-secondary); line-height: 1.6;">
-                        Blijf gefocust. Timeboxing is belangrijk in Scrum!
-                    </p>
-                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(239, 68, 68, 0.1); border-radius: 0.5rem; text-align: center;">
-                        <strong style="color: var(--danger);">❌</strong> Afdwalen & kletsen<br>
-                        <strong style="color: var(--success);">✅</strong> Focus op opdracht
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lessons Grid -->
-    <section class="lessons-section" id="lessen">
-        <div class="section-header">
-            <h2 class="section-title">Alle Lessen</h2>
-            <p class="section-description">
-                Elke les bouwt voort op de vorige. Start bij Les 1 en werk je omhoog! 📈
-            </p>
-        </div>
-
-        <div class="lessons-grid">
-            <!-- Les 1 -->
-            <a href="les1.html" class="lesson-card">
-                <div class="lesson-number">01</div>
-                <div class="lesson-icon">🏗️</div>
-                <h3 class="lesson-title">Wat is Scrum?</h3>
-                <p class="lesson-description">
-                    De basis van Scrum leren. Van traditioneel naar Agile werken met de Papieren Toren challenge!
-                </p>
-                <div class="lesson-meta">
-                    <span class="lesson-duration">⏱️ 60 min</span>
-                    <span class="lesson-level">🟢 Beginner</span>
-                </div>
-                <div class="lesson-topics">
-                    <span class="topic-tag">3 Pilaren</span>
-                    <span class="topic-tag">Agile Mindset</span>
-                    <span class="topic-tag">Groepswerk</span>
-                </div>
-            </a>
-
-            <!-- Les 2 -->
-            <a href="les2.html" class="lesson-card">
-                <div class="lesson-number">02</div>
-                <div class="lesson-icon">👥</div>
-                <h3 class="lesson-title">De Scrum Rollen</h3>
-                <p class="lesson-description">
-                    Ontdek de 3 rollen: Product Owner, Scrum Master en Development Team. TikTok feest organiseren!
-                </p>
-                <div class="lesson-meta">
-                    <span class="lesson-duration">⏱️ 60 min</span>
-                    <span class="lesson-level">🟢 Beginner</span>
-                </div>
-                <div class="lesson-topics">
-                    <span class="topic-tag">Product Owner</span>
-                    <span class="topic-tag">Scrum Master</span>
-                    <span class="topic-tag">Dev Team</span>
-                </div>
-            </a>
-
-            <!-- Les 3 -->
-            <a href="les3.html" class="lesson-card">
-                <div class="lesson-number">03</div>
-                <div class="lesson-icon">📅</div>
-                <h3 class="lesson-title">Scrum Events</h3>
-                <p class="lesson-description">
-                    Het ritme van Scrum: Sprint Planning, Daily Scrum, Review en Retro. Origami sprint simulatie!
-                </p>
-                <div class="lesson-meta">
-                    <span class="lesson-duration">⏱️ 60 min</span>
-                    <span class="lesson-level">🟡 Gemiddeld</span>
-                </div>
-                <div class="lesson-topics">
-                    <span class="topic-tag">Sprint</span>
-                    <span class="topic-tag">Daily Scrum</span>
-                    <span class="topic-tag">Review</span>
-                </div>
-            </a>
-
-            <!-- Les 4 -->
-            <a href="les4.html" class="lesson-card">
-                <div class="lesson-number">04</div>
-                <div class="lesson-icon">📋</div>
-                <h3 class="lesson-title">Scrum Artifacts</h3>
-                <p class="lesson-description">
-                    Product Backlog, Sprint Backlog en Increment. Maak je eigen klassenfeest app backlog!
-                </p>
-                <div class="lesson-meta">
-                    <span class="lesson-duration">⏱️ 60 min</span>
-                    <span class="lesson-level">🟡 Gemiddeld</span>
-                </div>
-                <div class="lesson-topics">
-                    <span class="topic-tag">Backlog</span>
-                    <span class="topic-tag">Increment</span>
-                    <span class="topic-tag">Definition of Done</span>
-                </div>
-            </a>
-
-            <!-- Les 5 -->
-            <a href="les5.html" class="lesson-card">
-                <div class="lesson-number">05</div>
-                <div class="lesson-icon">✍️</div>
-                <h3 class="lesson-title">User Stories</h3>
-                <p class="lesson-description">
-                    Leer User Stories schrijven met het "Als een... Wil ik... Zodat..." format. School app workshop!
-                </p>
-                <div class="lesson-meta">
-                    <span class="lesson-duration">⏱️ 60 min</span>
-                    <span class="lesson-level">🟡 Gemiddeld</span>
-                </div>
-                <div class="lesson-topics">
-                    <span class="topic-tag">User Stories</span>
-                    <span class="topic-tag">INVEST</span>
-                    <span class="topic-tag">Story Points</span>
-                </div>
-            </a>
-
-            <!-- Les 6 -->
-            <a href="les6.html" class="lesson-card featured">
-                <div class="lesson-number">06</div>
-                <div class="lesson-icon">🎯</div>
-                <h3 class="lesson-title">Complete Sprint</h3>
-                <p class="lesson-description">
-                    Alles samenbrengen! Draai een complete sprint en los een echt schoolprobleem op. Showtime! 🌟
-                </p>
-                <div class="lesson-meta">
-                    <span class="lesson-duration">⏱️ 60 min</span>
-                    <span class="lesson-level">🔴 Gevorderd</span>
-                </div>
-                <div class="lesson-topics">
-                    <span class="topic-tag">Full Sprint</span>
-                    <span class="topic-tag">Showcase</span>
-                    <span class="topic-tag">Project</span>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="over">
-        <div class="about-content">
-            <div class="about-text">
-                <h2 class="section-title">Waarom Scrum?</h2>
-                <p class="about-description">
-                    Scrum is dé manier van werken in de tech wereld. Of je nou apps bouwt, games maakt, 
-                    of marketing doet - overal werk je in sprints en teams. Deze skills zijn goud waard! 💰
-                </p>
-                <div class="features-list">
-                    <div class="feature-item">
-                        <span class="feature-icon">🎮</span>
-                        <div class="feature-text">
-                            <h4>Hands-on Leren</h4>
-                            <p>Geen saaie theorie. Elke les bevat een actieve opdracht die je echt doet.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">🤝</span>
-                        <div class="feature-text">
-                            <h4>Teamwork Skills</h4>
-                            <p>Leer samenwerken in groepen. Essentieel voor je toekomst!</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">🚀</span>
-                        <div class="feature-text">
-                            <h4>Direct Toepasbaar</h4>
-                            <p>Gebruik Scrum meteen bij je schoolprojecten of stage.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-visual">
-                <div class="stats-card">
-                    <h3>Wat ga je leren?</h3>
-                    <ul class="learning-list">
-                        <li>✅ Je legt de relatie tussen de <strong>3 Scrum rollen</strong> en effectieve teamsamenstelling binnen professionele software development</li>
-                        <li>✅ Je verbindt de <strong>5 Scrum events</strong> met iteratief projectmanagement binnen Agile werkprocessen</li>
-                        <li>✅ Je past de <strong>3 Scrum artifacts</strong> toe voor traceerbaarheid en transparantie in ICT projecten</li>
-                        <li>✅ Je ontwikkelt <strong>User Stories</strong> volgens professionele requirements engineering praktijken</li>
-                        <li>✅ Je demonstreert <strong>21e-eeuwse vaardigheden</strong> zoals samenwerken, communiceren en probleemoplossen binnen teamverband</li>
-                        <li>✅ Je integreert alle Scrum kennis door een <strong>complete Sprint</strong> uit te voeren van planning tot oplevering</li>
-                    </ul>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
-                        Deze competenties sluiten aan bij de doorlopende leerlijn voor software development en vormen de basis voor verdere ICT-opleiding.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <span class="logo-icon">🚀</span>
-                <span class="logo-text">Scrum Academy</span>
-            </div>
-            <p class="footer-text">
-                Gemaakt voor eerstejaars studenten. Veel succes met leren! 💪
-            </p>
-            <div class="footer-links">
-                <a href="#lessen">Lessen</a>
-                <a href="#over">Over</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+        <article class="card">
+          <h2 class="card__title">Navigation Patterns</h2>
+          <p class="card__meta">LEVEL 2 · 3 PROJECTEN</p>
+          <p class="card__body">
+            Experimenteer met horizontale navbars, sidebars en mobile menus.
+            Combineer flexbox met simpele animaties.
+          </p>
+          <div>
+            <span class="pill">Navbars</span>
+            <span class="pill">Sidebars</span>
+            <span class="pill">Hover states</span>
+          </div>
+          <div class="card__footer">
+            <div class="price">± 5 uur <span>/ praktijk</span></div>
+            <a class="btn btn--ghost" href="#">Bekijk patterns</a>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
